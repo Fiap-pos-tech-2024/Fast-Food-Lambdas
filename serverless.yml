@@ -1,0 +1,25 @@
+service: meu-servico
+
+provider:
+    name: aws
+    runtime: nodejs18.x
+    region: us-east-1
+    environment:
+        AWS_REGION: us-east-1
+        USERS_TABLE: ${self:service}-Users
+
+functions:
+    signUp:
+        handler: dist/index.signUpHandler
+        timeout: 90
+        events:
+            - http:
+                  path: /auth/signup
+                  method: post
+    signIn:
+        handler: dist/index.signInHandler
+        timeout: 90
+        events:
+            - http:
+                  path: /auth/signin
+                  method: post

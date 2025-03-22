@@ -6,7 +6,10 @@
         "test": "jest",
         "build": "tsc",
         "start": "node dynamodb.js && npm run build && sam build &&  sam local start-api --env-vars env.json",
-        "deploy": "sam deploy --guided"
+        "deploy": "sam deploy --guided",
+        "prepare": "husky install",
+        "lint": "eslint . --ext .ts",
+        "format": "prettier --write ."
     },
     "keywords": [],
     "author": "",

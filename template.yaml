@@ -1,42 +1,42 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Globals:
-    Function:
-        Runtime: nodejs18.x
-        Timeout: 90
-        MemorySize: 128
+  Function:
+    Runtime: nodejs18.x
+    Timeout: 90
+    MemorySize: 128
 
 Resources:
-    UsersDynamoDbTable:
-        Type: AWS::DynamoDB::Table
-        Properties:
-            TableName: ${self:provider.environment.USERS_TABLE}
-            AttributeDefinitions:
-                - AttributeName: cpf
-                  AttributeType: S
-            KeySchema:
-                - AttributeName: cpf
-                  KeyType: HASH
-            BillingMode: PAY_PER_REQUEST
-    SignUpFunction:
-        Type: AWS::Serverless::Function
-        Properties:
-            Handler: dist/index.signUpHandler
-            Timeout: 90
-            Events:
-                SignUpApi:
-                    Type: Api
-                    Properties:
-                        Path: /auth/signup
-                        Method: post
-    SignInFunction:
-        Type: AWS::Serverless::Function
-        Properties:
-            Timeout: 90
-            Handler: dist/index.signInHandler
-            Events:
-                SignInApi:
-                    Type: Api
-                    Properties:
-                        Path: /auth/signin
-                        Method: post
+  UsersDynamoDbTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:provider.environment.USERS_TABLE}
+      AttributeDefinitions:
+        - AttributeName: cpf
+          AttributeType: S
+      KeySchema:
+        - AttributeName: cpf
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+  SignUpFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: dist/index.signUpHandler
+      Timeout: 90
+      Events:
+        SignUpApi:
+          Type: Api
+          Properties:
+            Path: /auth/signup
+            Method: post
+  SignInFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Timeout: 90
+      Handler: dist/index.signInHandler
+      Events:
+        SignInApi:
+          Type: Api
+          Properties:
+            Path: /auth/signin
+            Method: post

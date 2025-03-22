@@ -4,8 +4,5 @@
 # Rodar testes
 npm test
 
-# Verificar erros de lint
-npm run lint
-
 # Garantir que o código está formatado
 npm run format

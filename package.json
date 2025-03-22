@@ -7,7 +7,7 @@
         "build": "tsc",
         "start": "node dynamodb.js && npm run build && sam build &&  sam local start-api --env-vars env.json",
         "deploy": "sam deploy --guided",
-        "prepare": "husky install",
+        "prepare": "husky",
         "lint": "eslint . --ext .ts",
         "format": "prettier --write ."
     },
@@ -27,6 +27,7 @@
     "devDependencies": {
         "@types/aws-lambda": "^8.10.147",
         "@types/node": "^22.13.10",
-        "husky": "^9.1.7"
+        "husky": "^9.1.7",
+        "prettier": "^3.5.3"
     }
 }
